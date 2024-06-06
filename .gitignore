@@ -41,3 +41,15 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# macOS related
+.macos/
+
+# Firebase related
+**/google-services.json
+**/GoogleService-Info.plist
+firebase-debug.log
+**/firebase/hosting.*
+
+# Sensitive key files
+lib/criptographyKey.dart
