@@ -8,6 +8,8 @@ So, when entering, the visitor simply presents their QR-Code and the organizers 
 
 For paid events, the application is also used to check whether the visitor has already paid or needs to pay.
 
+PS: Currently the application works as if it were for just one event, to use it for another you would have to clean the entire database, but in the future I intend to make it more generic
+PS2: The idea of ​​the application was created to handle event accreditations for the [Rotaract](https://www.rotary.org/en/get-involved/rotaract-clubs) Club de Erechim volunteer club in Brazil in a more automatic way that allows for fewer errors.
 
 # Version
 ```
@@ -29,3 +31,12 @@ $ flutter run
 
 # Status
 > ### Paused for now, but I’ll be working on it again soon. 🛑🔄🛠️
+
+# To do
+- Leave it generic enough to be able to create events and add their respective needs, such as payments
+  - Add credentials
+  - Make information registration more versatile
+  - Create a part for creating events
+
+# What is Rotaract?
+Rotaract Clubs are clubs that promote social actions, environmental preservation and aim to train leaders. They are made up of young people/adults aged 18 and over. Clubs are typically affiliated with (or sponsored by) a local Rotary club.
