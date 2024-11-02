@@ -1,5 +1,5 @@
 # Description
-It is a flutter project application to serve as a check-in at places and events
+It is a flutter project to serve as a check-in at places and events
 
 # How it works
 Only the event organizers have access to the app, they then register a visitor for the event by adding their data, and then a QR-Code is generated which is sent directly to the registered visitor.
@@ -13,10 +13,7 @@ PS2: The idea of ​​the application was created to handle event accreditation
 
 # Version
 ```
-Flutter 3.22.2 • channel stable
-Framework • revision 761747bfc5 • 2024-06-05 22:15:13 +0200
-Engine • revision edd8546116
-Tools • Dart 3.4.3 • DevTools 2.34.3
+sdk: >=3.3.3 <4.0.0
 ```
 
 # Get the dependencies
