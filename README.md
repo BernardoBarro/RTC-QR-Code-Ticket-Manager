@@ -31,9 +31,11 @@ $ flutter run
 
 # To do
 - Leave it generic enough to be able to create events and add their respective needs, such as payments
+  - Export QR Code as an image
+  - Export PDF Report
+  - Improve encryption
   - Add credentials
-  - Make information registration more versatile
-  - Create a part for creating events
+  - Hub to access multiple projects
 
 # What is Rotaract?
 Rotaract Clubs are clubs that promote social actions, environmental preservation and aim to train leaders. They are made up of young people/adults aged 18 and over. Clubs are typically affiliated with (or sponsored by) a local Rotary club.
