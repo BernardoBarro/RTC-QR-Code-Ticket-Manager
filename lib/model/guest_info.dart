@@ -1,18 +1,18 @@
-class UserInfoA {
+class GuestInfo {
   String uid;
   String name;
   String phone;
   String payed;
   String affiliated;
-  bool? checked_in = false;
+  bool? checkedIn = false;
 
-  UserInfoA({
+  GuestInfo({
     required this.uid,
     required this.name,
     required this.phone,
     required this.payed,
     required this.affiliated,
-    this.checked_in,
+    this.checkedIn,
   });
 
   Map<String, dynamic> toJson() => {
@@ -21,15 +21,15 @@ class UserInfoA {
     'phone': phone,
     'payed': payed,
     'affiliated': affiliated,
-    'checked_in': checked_in,
+    'checked_in': checkedIn,
   };
 
-  factory UserInfoA.fromJson(Map<dynamic, dynamic> json, String a) => UserInfoA(
+  factory GuestInfo.fromJson(Map<dynamic, dynamic> json, String a) => GuestInfo(
     uid: a,
     name: json['name'],
     phone: json['phone'],
     payed: json['payed'],
     affiliated: json['affiliated'],
-    checked_in: json['checked_in'],
+    checkedIn: json['checked_in'],
   );
 }

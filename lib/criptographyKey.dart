@@ -1,3 +1,3 @@
 library globals;
 
-var key = "34scwty463qanTzbH43kAfwrhJo6m9dG";
+var key = "MY_KEY_NEED_32_LENGHT";

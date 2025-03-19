@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:encrypt/encrypt.dart' as encrypt;
-import 'package:rtc_project/model/user_info.dart';
+import 'package:rtc_project/model/guest_info.dart';
 
 class CryptoManager {
   final encrypt.Key key;
@@ -12,7 +12,7 @@ class CryptoManager {
     final iv = encrypt.IV.fromSecureRandom(16);
     final encrypter = encrypt.Encrypter(encrypt.AES(key, mode: encrypt.AESMode.cbc));
     final encrypted = encrypter.encrypt(plainText, iv: iv);
-    return iv.base64 + ':' + encrypted.base64;
+    return '${iv.base64}:${encrypted.base64}';
   }
 
   String decryptData(String encryptedTextWithIv) {

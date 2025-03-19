@@ -9,9 +9,11 @@ class QRCodeScreen extends StatelessWidget {
 
   const QRCodeScreen({super.key, required this.dataKey, required this.name});
 
+
   @override
   Widget build(BuildContext context) {
     String data = manager.encryptUserInfo(dataKey);
+    print("teste");
 
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +28,7 @@ class QRCodeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Text(
               name,
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -42,7 +44,7 @@ class QRCodeScreen extends StatelessWidget {
               height: 150,
               // fit: BoxFit.cover,
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
           ],
         ),
       ),
