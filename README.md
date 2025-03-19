@@ -22,7 +22,11 @@ dart: 3.7.2
 $ flutter pub get
 ```
 
-# Configure criptography key on lib/criptographyKey.dart
+# Configure criptography key
+```
+$ add a criptography key with 16, 24 or 32 lenght and add on lib/criptographyKey.dart
+```
+
 
 # Running the app
 ```
