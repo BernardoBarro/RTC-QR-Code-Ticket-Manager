@@ -38,6 +38,7 @@ class GuestsProvider extends ChangeNotifier {
             checkedIn: value['checked_in'] ?? false,
           ));
         }
+        loadedItems.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
         _guests = loadedItems;
         notifyListeners();
       }
