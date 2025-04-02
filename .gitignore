@@ -10,6 +10,16 @@
 .svn/
 migrate_working_dir/
 
+# Ignora a pasta onde o CMake/Ninja gera arquivos nativos
+android/app/.cxx/
+
+# Ignora quaisquer codemodel e metadados
+**/codemodel-*
+**/metadata_generation
+**/symbol_folder_index.txt
+**/build_file_index.txt
+**/prefab_config.json
+
 # IntelliJ related
 *.iml
 *.ipr
@@ -56,6 +66,13 @@ app.*.map.json
 **/GoogleService-Info.plist
 firebase-debug.log
 **/firebase/hosting.*
+
+# Build for SO
+**/generated_plugin_registrant.cc
+**/generated_plugin_registrant.h
+**/generated_plugins.cmake
+macos/Flutter/GeneratedPluginRegistrant.swift
+
 
 # Sensitive key files
 lib/criptographyKey.dart
