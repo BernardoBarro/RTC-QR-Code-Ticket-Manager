@@ -31,6 +31,12 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Arquivos gerados pelo CMake e Ninja
+CMakeCache.txt
+cmake_install.cmake
+CMakeFiles/
+build.ninja
+
 # Symbolication related
 app.*.symbols
 
