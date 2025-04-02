@@ -34,11 +34,10 @@ $ flutter run
 ```
 
 # Status
-> ### Paused for now, but I’ll be working on it again soon. 🛑🔄🛠️
+> ### Working on it 💪🛠️
 
 # To do
 - Leave it generic enough to be able to create events and add their respective needs, such as payments
-  - Export QR Code as an image
   - Export PDF Report
   - Improve encryption
   - Add credentials
