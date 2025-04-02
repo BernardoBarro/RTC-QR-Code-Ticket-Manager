@@ -38,7 +38,6 @@ $ flutter run
 
 # To do
 - Leave it generic enough to be able to create events and add their respective needs, such as payments
-  - Export PDF Report
   - Improve encryption
   - Add credentials
   - Hub to access multiple projects
