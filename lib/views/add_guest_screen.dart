@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:rtc_project/views/qr_code_screen.dart';
 
 import '../model/guest_info.dart';
@@ -31,6 +32,12 @@ class _AddGuestScreenState extends State<AddGuestScreen> {
     _selectedOption = widget.guestInfo?.affiliated ?? 'Selecione';
   }
 
+  final maskFormatter = MaskTextInputFormatter(
+    mask: '(##) #####-####',
+    filter: { "#": RegExp(r'[0-9]') },
+    type: MaskAutoCompletionType.lazy,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,21 +67,22 @@ class _AddGuestScreenState extends State<AddGuestScreen> {
                   ),
                   const SizedBox(height: 30),
                   TextFormField(
+                    controller: _personPhoneController,
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [maskFormatter],
+                    decoration: const InputDecoration(
+                      labelText: 'Adicione o telefone do convidado:',
+                    ),
                     validator: (value) {
-                      String pattern = r'(^\+?[0-9]{10,15}$)';
-                      RegExp regExp = RegExp(pattern);
-
                       if (value == null || value.isEmpty) {
                         return 'Informe o número de telefone';
-                      } else if (!regExp.hasMatch(value)) {
+                      }
+                      // Utiliza o texto sem máscara para validação, por exemplo, garantindo 10 ou 11 dígitos
+                      if (maskFormatter.getUnmaskedText().length < 10) {
                         return 'Informe um número de telefone válido';
                       }
                       return null;
                     },
-                    controller: _personPhoneController,
-                    decoration: const InputDecoration(
-                        labelText: 'Adicione o telefone do convidado:'),
-                    keyboardType: TextInputType.phone,
                   ),
                   const SizedBox(height: 30),
                   const Text('Já está pago?'),
