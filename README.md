@@ -13,13 +13,20 @@ PS2: The idea of ​​the application was created to handle event accreditation
 
 # Version
 ```
-sdk: >=3.3.3 <4.0.0
+flutter: 3.29.2
+dart: 3.7.2
 ```
 
 # Get the dependencies
 ```
 $ flutter pub get
 ```
+
+# Configure criptography key
+```
+$ add a criptography key with 16, 24 or 32 lenght and add on lib/criptographyKey.dart
+```
+
 
 # Running the app
 ```
