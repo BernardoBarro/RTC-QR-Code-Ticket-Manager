@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:path_provider/path_provider.dart';
@@ -31,41 +32,48 @@ class QRCodeScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              color: Colors.white,
-              child: Screenshot(
-                controller: screenshotController,
-                child: Container(
-                  color: Colors.white,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 30),
-                        Text(
-                          name,
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        QrImageView(
-                          data: data,
-                          version: QrVersions.auto,
-                          size: 200.0,
-                        ),
-                        Image.asset(
-                          'assets/logo.png',
-                          width: 250,
-                          height: 150,
-                        ),
-                        const SizedBox(height: 30),
-                      ],
+            child: Screenshot(
+              controller: screenshotController,
+              child: Stack(children: [
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/qrcodeview.png'),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
-              ),
+                Align(
+                  alignment: const Alignment(0.0, -0.35),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        name,
+                        style: GoogleFonts.dmSans(
+                          textStyle: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      QrImageView(
+                        backgroundColor: Colors.white,
+                        data: data,
+                        version: QrVersions.auto,
+                        size: 170.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
             ),
           ),
         ],
