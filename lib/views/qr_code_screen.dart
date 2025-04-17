@@ -79,7 +79,7 @@ class QRCodeScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.share),
+        child: const Icon(Icons.share),
         onPressed: () async {
           try {
             final imageBytes = await screenshotController.capture();
@@ -90,7 +90,7 @@ class QRCodeScreen extends StatelessWidget {
 
               await Share.shareXFiles(
                 [XFile(file.path)],
-                text: 'Mensagem gerada automaticamente!',
+                text: 'Este é seu ingresso para o III Festival de Tortas do Rotaract Club de Erechim aguardaremos ansiosamente a sua presença!',
               );
             }
           } catch (e) {
