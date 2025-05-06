@@ -68,7 +68,7 @@ class QRCodeScreen extends StatelessWidget {
                         backgroundColor: Colors.white,
                         data: data,
                         version: QrVersions.auto,
-                        size: 170.0,
+                        size: 150.0,
                       ),
                     ],
                   ),

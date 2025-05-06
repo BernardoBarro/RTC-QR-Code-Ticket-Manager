@@ -89,12 +89,39 @@ class _ListScreenState extends State<ListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: Consumer<GuestsProvider>(
-              builder: (context, list, child) {
-                return list.guest.isEmpty
+      body: Consumer<GuestsProvider>(
+        builder: (context, list, child) {
+          final count = list.guest.length;
+          Color bgColor;
+          if (count < 70) {
+            bgColor = Colors.green;
+          } else if (count < 80) {
+            bgColor = Colors.yellow;
+          } else if (count == 80) {
+            bgColor = Colors.pink;
+          } else {
+            bgColor = Colors.red;
+          }
+
+          return Column(
+            children: [
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                color: bgColor,
+                child: Text(
+                  '$count/80',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+
+              Expanded(
+                child: list.guest.isEmpty
                     ? const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
@@ -167,11 +194,11 @@ class _ListScreenState extends State<ListScreen> {
                             ],
                           );
                         },
-                      );
-              },
-            ),
-          ),
-        ],
+                      ),
+              ),
+            ],
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _exportToPdf,

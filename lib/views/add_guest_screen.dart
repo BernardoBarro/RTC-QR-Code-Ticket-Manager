@@ -77,8 +77,9 @@ class _AddGuestScreenState extends State<AddGuestScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Informe o número de telefone';
                       }
-                      // Utiliza o texto sem máscara para validação, por exemplo, garantindo 10 ou 11 dígitos
-                      if (maskFormatter.getUnmaskedText().length < 10) {
+                      // remove tudo que não for dígito
+                      final digits = value.replaceAll(RegExp(r'\D'), '');
+                      if (digits.length < 10) {
                         return 'Informe um número de telefone válido';
                       }
                       return null;
