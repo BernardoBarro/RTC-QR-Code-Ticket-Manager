@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
 import 'package:provider/provider.dart';
 import 'package:rtc_project/views/add_guest_screen.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -47,42 +48,72 @@ class _ListScreenState extends State<ListScreen> {
     );
   }
 
+  String removeEmojis(String input) {
+    final filtered = input.runes.where((r) => r <= 0xFF);
+    return String.fromCharCodes(filtered).trim();
+  }
+
   Future<void> _exportToPdf() async {
     final guests = Provider.of<GuestsProvider>(context, listen: false).guest;
+
     final pdf = pw.Document();
 
     pdf.addPage(
-      pw.Page(
-        build: (pw.Context context) {
-          return pw.Column(
-            crossAxisAlignment: pw.CrossAxisAlignment.start,
-            children: [
-              pw.Text("Lista de Convidados", style: pw.TextStyle(fontSize: 24)),
-              pw.SizedBox(height: 16),
-              pw.Table.fromTextArray(
-                headers: ["Nome", "Responsável", "Telefone", "Check-in", "Pago"],
-                data: guests.map((guest) => [
-                  guest.name,
-                  guest.affiliated,
-                  guest.phone,
-                  guest.checkedIn == true ? "Sim" : "Não",
-                  guest.payed
-                ]).toList(),
-              )
-            ],
+      pw.MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        margin: pw.EdgeInsets.all(24),
+        header: (pw.Context ctx) {
+          return pw.Text(
+            'Lista de Convidados',
+            style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold),
           );
         },
+        build: (pw.Context ctx) => [
+          pw.SizedBox(height: 12),
+          pw.TableHelper.fromTextArray(
+            headers: ['Nome', 'Responsável', 'Telefone', 'Check-in', 'Pago'],
+            data: guests.map((g) {
+              return [
+                g.name,
+                g.affiliated,
+                g.phone,
+                g.checkedIn == true? 'Sim' : 'Não',
+                removeEmojis(g.payed),
+              ];
+            }).toList(),
+            cellAlignments: {
+              0: pw.Alignment.centerLeft,
+              1: pw.Alignment.centerLeft,
+              2: pw.Alignment.centerLeft,
+              3: pw.Alignment.center,
+              4: pw.Alignment.center,
+            },
+            headerStyle: pw.TextStyle(
+              fontSize: 12,
+              fontWeight: pw.FontWeight.bold,
+            ),
+            cellStyle: const pw.TextStyle(fontSize: 10),
+            headerDecoration: const pw.BoxDecoration(
+              color: PdfColors.grey300,
+            ),
+            rowDecoration: const pw.BoxDecoration(
+              border: pw.Border(
+                bottom: pw.BorderSide(width: .5, color: PdfColors.grey),
+              ),
+            ),
+          ),
+        ],
       ),
     );
 
     final output = await getTemporaryDirectory();
-    final file = File("${output.path}/FestivalDeTortasIII.pdf");
+    final file = File('${output.path}/FestivalDeTortasIII.pdf');
     await file.writeAsBytes(await pdf.save());
 
-    await Share.shareXFiles([XFile(file.path)], text: "Lista de Convidados PDF");
+    await Share.shareXFiles([XFile(file.path)], text: 'Lista de Convidados PDF');
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("PDF salvo em: ${file.path}")),
+      SnackBar(content: Text('PDF salvo em: ${file.path}')),
     );
   }
 
